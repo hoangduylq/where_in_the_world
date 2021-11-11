@@ -1,0 +1,38 @@
+@import '../../../common/variables';
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+
+  &__search {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    flex: 1;
+
+    img {
+      position: absolute;
+      height: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 20px 14px 50px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.05);
+      outline: none;
+    }
+  }
+
+  &__filter {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.05);
+    padding: 0 40px 0 20px;
+    outline: none;
+  }
+}

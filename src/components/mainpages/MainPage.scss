@@ -1,0 +1,55 @@
+@import '../../common/variables';
+
+.main-page {
+  min-height: 1000px;
+  padding-top: 40px;
+}
+
+.main-page.light {
+  background-color: $light-bg;
+
+  .toolbar {
+    &__search {
+      img {
+        filter: invert(60%);
+      }
+      input {
+        color: $light-text;
+      }
+    }
+  }
+
+  .countries {
+    .country {
+      background-color: $dark-text-light-el;
+    }
+  }
+}
+
+.main-page.dark {
+  background-color: $dark-bg;
+
+  .toolbar {
+    &__search {
+      img {
+        filter: invert(1);
+      }
+      input {
+        background-color: $dark-el;
+        color: $dark-text-light-el;
+      }
+    }
+
+    &__filter {
+      background-color: $dark-el;
+      color: $dark-text-light-el;
+    }
+  }
+
+  .countries {
+    .country {
+      background-color: $dark-el;
+      color: $dark-text-light-el;
+    }
+  }
+}
