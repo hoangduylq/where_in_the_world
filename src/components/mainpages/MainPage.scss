@@ -23,6 +23,10 @@
     .country {
       background-color: $dark-text-light-el;
     }
+
+    .not-found {
+      color: $light-text;
+    }
   }
 }
 
@@ -49,6 +53,10 @@
   .countries {
     .country {
       background-color: $dark-el;
+      color: $dark-text-light-el;
+    }
+
+    .not-found {
       color: $dark-text-light-el;
     }
   }
