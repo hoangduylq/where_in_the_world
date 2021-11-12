@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { GlobalState } from '../../GlobalState';
+import './MainPage.scss';
 import ToolBar from './toolbar/ToolBar';
 import Countries from './countries/Countries';
-import './MainPage.scss';
-import { GlobalState } from '../../GlobalState';
+import DetailCountry from './detailcountry/DetailCountry';
 
 function MainPage() {
   const state = useContext(GlobalState);
@@ -11,8 +13,18 @@ function MainPage() {
   return (
     <section className={`main-page ${mode}`}>
       <div className='main-page__wrap grid wide'>
-        <ToolBar />
-        <Countries />
+        {/* <Countries /> */}
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <>
+                <ToolBar /> <Countries />
+              </>
+            }
+          />
+          <Route path='/detail/:id' element={<DetailCountry />} />
+        </Routes>
       </div>
     </section>
   );

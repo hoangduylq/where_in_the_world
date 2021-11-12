@@ -22,11 +22,20 @@
   .countries {
     .country {
       background-color: $dark-text-light-el;
+
+      &__info__name {
+        color: $light-text;
+      }
     }
 
     .not-found {
       color: $light-text;
     }
+  }
+
+  .back-home {
+    background-color: $dark-text-light-el;
+    color: $light-text;
   }
 }
 
@@ -54,10 +63,33 @@
     .country {
       background-color: $dark-el;
       color: $dark-text-light-el;
+
+      &__info__name {
+        color: $dark-text-light-el;
+      }
     }
 
     .not-found {
       color: $dark-text-light-el;
+    }
+  }
+
+  .back-home {
+    background-color: $dark-el;
+    color: $dark-text-light-el;
+
+    img {
+      filter: invert(1);
+    }
+  }
+
+  .detail {
+    color: $dark-text-light-el;
+
+    .detail__info__border_countries {
+      span {
+        background-color: $dark-el;
+      }
     }
   }
 }

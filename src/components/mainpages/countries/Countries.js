@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './countries.scss';
 import { GlobalState } from '../../../GlobalState';
+import { Link } from 'react-router-dom';
 
 function Countries() {
   const state = useContext(GlobalState);
@@ -25,7 +26,11 @@ function Countries() {
                 <img src={country.flags.svg} alt='' />
               </div>
               <div className='country__info'>
-                <h2 className='country__info__name'>{country.name}</h2>
+                <Link
+                  to={`/detail/${country.callingCodes}`}
+                  className='country__info__name'>
+                  {country.name}
+                </Link>
 
                 <div>
                   <h6>Population:</h6>

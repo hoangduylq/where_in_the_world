@@ -1,13 +1,18 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { DataProvider } from './GlobalState';
-import HomePage from './components/homepage';
+import Header from './components/header/Header';
+import MainPage from './components/mainpages/MainPage';
 
 function App() {
   return (
     <DataProvider>
-      <div className='App'>
-        <HomePage />
-      </div>
+      <Router>
+        <div className='App'>
+          <Header />
+          <MainPage />
+        </div>
+      </Router>
     </DataProvider>
   );
 }
