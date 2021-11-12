@@ -1,12 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Search from '../../../assets/icons/search.svg';
 import './toolbar.scss';
 import { GlobalState } from '../../../GlobalState';
 
 function ToolBar() {
   const state = useContext(GlobalState);
-  const [search, setSearch] = state.countriesAPI.search;
+  const [, setSearch] = state.countriesAPI.search;
+  const [inputSearch, SetInputSearch] = useState('');
   const [, setRegion] = state.countriesAPI.region;
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      setSearch(inputSearch);
+    }, 1000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [inputSearch, setSearch]);
 
   return (
     <div className='toolbar'>
@@ -15,8 +24,8 @@ function ToolBar() {
         <input
           type='text'
           placeholder='Search for a country...'
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={inputSearch}
+          onChange={(e) => SetInputSearch(e.target.value)}
         />
       </div>
 
