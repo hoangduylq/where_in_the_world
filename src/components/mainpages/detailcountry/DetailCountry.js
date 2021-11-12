@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { GlobalState } from '../../../GlobalState';
 import ArrowLeft from '../../../assets/icons/arrow-left.svg';
@@ -7,29 +7,31 @@ import './detailcountry.scss';
 function DetailCountry() {
   const state = useContext(GlobalState);
   const [countries] = state.countriesAPI.countries;
+  const [countriesAll] = state.countriesAPI.countriesAll;
   const params = useParams();
   const [detailCountry, setDetailCountry] = useState([]);
+  const contriesByCode = useRef({});
+
+  useEffect(() => {
+    countriesAll.forEach((country) => {
+      contriesByCode.current = {
+        ...contriesByCode.current,
+        [country.alpha3Code]: country.name,
+      };
+    });
+  }, [countriesAll]);
 
   useEffect(() => {
     if (params.id) {
       countries.forEach((country) => {
-        if (Number(country.callingCodes) === Number(params.id))
+        if (Number(country.callingCodes) === Number(params.id)) {
           setDetailCountry(country);
+        }
       });
     }
   }, [params.id, countries]);
 
   if (detailCountry.length === 0) return null;
-
-  const getNameBorderCountries = (code) => {
-    let nameBorderCountry = '';
-    countries.forEach((country) => {
-      if (country.alpha3Code === code) {
-        nameBorderCountry = country.name;
-      }
-    });
-    return nameBorderCountry;
-  };
 
   return (
     <>
@@ -75,13 +77,13 @@ function DetailCountry() {
               <div className='detail__info__item'>
                 <h6>Currencies:</h6>
                 {detailCountry.currencies.map((currency, index) => (
-                  <span>{currency.name},</span>
+                  <span key={index}>{currency.name},</span>
                 ))}
               </div>
               <div className='detail__info__item'>
                 <h6>Languages:</h6>
                 {detailCountry.languages.map((language, index) => (
-                  <span>{language.name}, </span>
+                  <span key={index}>{language.name}, </span>
                 ))}
               </div>
             </div>
@@ -90,7 +92,7 @@ function DetailCountry() {
           <div className='detail__info__border_countries'>
             <h6>Border Countries:</h6>
             {detailCountry.borders.map((borderCountry, index) => (
-              <span key={index}>{getNameBorderCountries(borderCountry)}</span>
+              <span key={index}>{contriesByCode.current[borderCountry]}</span>
             ))}
           </div>
         </div>
