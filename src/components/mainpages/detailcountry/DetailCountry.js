@@ -33,6 +33,16 @@ function DetailCountry() {
 
   if (detailCountry.length === 0) return null;
 
+  const showBorderCountries = () => {
+    if (detailCountry) {
+      return detailCountry.borders.map((borderCountry, index) => (
+        <span key={index}>{contriesByCode.current[borderCountry]}</span>
+      ));
+    }
+
+    return '';
+  };
+
   return (
     <>
       <Link to='/' className='back-home'>
@@ -91,9 +101,7 @@ function DetailCountry() {
 
           <div className='detail__info__border_countries'>
             <h6>Border Countries:</h6>
-            {detailCountry.borders.map((borderCountry, index) => (
-              <span key={index}>{contriesByCode.current[borderCountry]}</span>
-            ))}
+            {showBorderCountries()}
           </div>
         </div>
       </div>

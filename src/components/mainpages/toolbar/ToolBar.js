@@ -17,6 +17,15 @@ function ToolBar() {
     return () => clearTimeout(delayDebounceFn);
   }, [inputSearch, setSearch]);
 
+  const onChangeInputSearch = (e) => {
+    SetInputSearch(e.target.value);
+  };
+
+  const onChangeRegion = (e) => {
+    setRegion(e.target.value);
+    SetInputSearch('');
+  };
+
   return (
     <div className='toolbar'>
       <div className='toolbar__search'>
@@ -25,14 +34,14 @@ function ToolBar() {
           type='text'
           placeholder='Search for a country...'
           value={inputSearch}
-          onChange={(e) => SetInputSearch(e.target.value)}
+          onChange={(e) => onChangeInputSearch(e)}
         />
       </div>
 
       <select
         name='region'
         className='toolbar__filter'
-        onChange={(e) => setRegion(e.target.value)}>
+        onChange={(e) => onChangeRegion(e)}>
         <option value=''>Filter by Region</option>
         <option value='africa'>Africa</option>
         <option value='americas'>Americas</option>
